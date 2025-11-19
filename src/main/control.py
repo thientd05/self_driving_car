@@ -45,7 +45,7 @@ def telemetry(sid, data):
         print(f"Steering angle:{steering_angle},Throttle:{throttle}")
         send_control(steering_angle, throttle)  # send control command
     else:
-        sio.emit('manual', data={}, skip_sid=True)
+        sio.emit('manual', data={}, skip_sid=True) 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Remote Driving')

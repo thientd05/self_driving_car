@@ -1,6 +1,6 @@
 from tensorflow import keras
 from tensorflow.keras import layers
-import numpy as np 
+import numpy as np  
 
 def create_model(inputShape):
     model = keras.models.Sequential([
