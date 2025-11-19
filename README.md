@@ -6,7 +6,7 @@ Udacity-style self-driving car simulator via Socket.IO.
 ### Video demo
 - demo.mp4
 or
-- Link demo: https://youtube.com
+- Demo link: https://youtube.com/shorts/abeWI6rHyNw?feature=share
 
 ## Project Structure
 
