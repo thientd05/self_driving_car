@@ -7,8 +7,8 @@ import eventlet.wsgi
 from PIL import Image
 from flask import Flask
 from io import BytesIO
-from tensorflow.keras.models import load_model
-import tensorflow.keras as keras
+from tensorflow.keras.models import load_model # type: ignore
+import tensorflow.keras as keras # type: ignore
 import math
 
 # SỬ DỤNG MÔ HÌNH TỐT NHẤT: save_at21.keras

@@ -1,4 +1,4 @@
-weights/
+*.keras
 *.pyc
 __pycache__/
 env/
