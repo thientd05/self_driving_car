@@ -1,50 +1,50 @@
-## Giải thích về các thành phần trong mô hình
+## Explanation of Model Components
 
 ### 1. **BatchNormalization**
-**BatchNormalization** (chuẩn hóa theo batch) là một kỹ thuật giúp ổn định quá trình huấn luyện của mạng nơ-ron. Nó chuẩn hóa các đầu ra của mỗi lớp sao cho có trung bình bằng 0 và phương sai bằng 1 trong mỗi batch.
+**BatchNormalization** is a technique that stabilizes neural-network training by normalizing the outputs of each layer so that each batch has zero mean and unit variance.
 
-Công thức chuẩn hóa:
+Normalization formula:
 $$
 \hat{x} = \frac{x - \mu}{\sigma}
 $$
-- \( \mu \): Trung bình của đầu ra trong batch.
-- \( \sigma \): Độ lệch chuẩn của đầu ra trong batch.
+- \( \mu \): Mean of the batch outputs.
+- \( \sigma \): Standard deviation of the batch outputs.
 
-Sau khi chuẩn hóa, **BatchNormalization** áp dụng các tham số **scale** (\(\gamma\)) và **shift** (\(\beta\)) để điều chỉnh lại đầu ra:
+After normalization, **BatchNormalization** applies learnable **scale** (\(\gamma\)) and **shift** (\(\beta\)) parameters:
 $$
 y = \gamma \hat{x} + \beta
 $$
-- **Scale (\(\gamma\))**: Điều chỉnh độ rộng của phân phối đầu ra.
-- **Shift (\(\beta\))**: Dịch đầu ra để phù hợp với phạm vi mong muốn.
+- **Scale (\(\gamma\))**: Controls the spread of the output distribution.
+- **Shift (\(\beta\))**: Re-centers outputs to the desired range.
 
 ### 2. **Dropout**
-**Dropout** là một kỹ thuật regularization giúp giảm overfitting bằng cách ngẫu nhiên loại bỏ (set to 0) một tỷ lệ phần trăm đơn vị trong lớp trong quá trình huấn luyện. Điều này giúp mạng không phụ thuộc quá nhiều vào bất kỳ đơn vị nào, giúp mô hình tổng quát hơn.
+**Dropout** is a regularization technique that mitigates overfitting by randomly zeroing a percentage of units during training, preventing the network from relying too heavily on any one neuron.
 
-Công thức Dropout:
-- Trong mỗi bước huấn luyện, với tỷ lệ dropout \( p \), mỗi đơn vị đầu ra \( x \) sẽ được nhân với một giá trị ngẫu nhiên:
+Dropout behavior:
+- In each training step, with dropout rate \( p \), each output unit \( x \) is multiplied by a random mask:
 $$
 x_{\text{dropout}} = x \cdot \text{mask}
 $$
-- **mask** là một vector ngẫu nhiên với các giá trị 0 hoặc 1, với xác suất 1 là \( 1 - p \).
+- **mask** is a random vector containing 0s and 1s, where the probability of 1 is \( 1 - p \).
 
-### 3. **Khởi tạo trọng số: He Normal (he_normal)**
-**He Normal** là một phương pháp khởi tạo trọng số được thiết kế cho các mạng sử dụng hàm kích hoạt **ReLU**. Nó giúp giảm thiểu vấn đề vanishing gradient.
+### 3. **He Normal Initialization (`he_normal`)**
+**He Normal** initialization is tailored for networks using **ReLU** activations to reduce vanishing gradients.
 
-Công thức khởi tạo:
+Initialization rule:
 $$
 W \sim \mathcal{N}(0, \frac{2}{n_{\text{input}}})
 $$
-- Trọng số được khởi tạo từ phân phối chuẩn với trung bình 0 và phương sai \( \frac{2}{n_{\text{input}}} \), trong đó \( n_{\text{input}} \) là số lượng đơn vị trong lớp đầu vào.
+- Weights are sampled from a normal distribution with zero mean and variance \( \frac{2}{n_{\text{input}}} \), where \( n_{\text{input}} \) is the number of inputs to the layer.
 
-### 4. **Khởi tạo trọng số: Glorot Uniform (glorot_uniform)**
-**Glorot Uniform** (còn gọi là Xavier Uniform) là phương pháp khởi tạo trọng số dành cho các mạng sử dụng hàm kích hoạt **sigmoid** hoặc **tanh**. Phương pháp này giúp ổn định quá trình lan truyền tín hiệu trong mạng nơ-ron sâu.
+### 4. **Glorot Uniform Initialization (`glorot_uniform`)**
+**Glorot Uniform** (a.k.a. Xavier Uniform) works well for networks using **sigmoid** or **tanh** activations, keeping signal variance consistent across layers.
 
-Công thức khởi tạo:
+Initialization rule:
 $$
 W \sim \mathcal{U} \left( -\sqrt{\frac{6}{n_{\text{input}} + n_{\text{output}}}}, \sqrt{\frac{6}{n_{\text{input}} + n_{\text{output}}}} \right)
 $$
-- Trọng số được khởi tạo từ phân phối đồng đều trong khoảng \( \left[ -\text{limit}, \text{limit} \right] \), với:
+- Weights are drawn from a uniform range \( \left[ -\text{limit}, \text{limit} \right] \), where:
   $$
   \text{limit} = \sqrt{\frac{6}{n_{\text{input}} + n_{\text{output}}}}
   $$
-- \( n_{\text{input}} \) và \( n_{\text{output}} \) lần lượt là số lượng đơn vị của lớp đầu vào và lớp đầu ra.
+- \( n_{\text{input}} \) and \( n_{\text{output}} \) are the numbers of units in the input and output layers, respectively.
