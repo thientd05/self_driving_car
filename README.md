@@ -3,6 +3,11 @@
 End-to-end pipeline for training a behavioral cloning model and driving the
 Udacity-style self-driving car simulator via Socket.IO.
 
+### Video demo
+- demo.mp4
+or
+- Link demo: https://youtube.com
+
 ## Project Structure
 
 - `src/main/model.py` – CNN architecture that maps images to steering & throttle.
