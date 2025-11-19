@@ -57,7 +57,7 @@ Outputs are saved under `models5/` by default (best checkpoints only).
 2. Start the controller:
    ```bash
    cd ~your_dir/src/main
-   python control.py /home/thienta/HUST_20235839/AI/car/self_driving_car/weights/save_at21.keras
+   python control.py weights/save_at21.keras
    ```
 3. On connection, the script streams steering/throttle commands predicted from
    incoming base64 images.
