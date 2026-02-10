@@ -59,4 +59,4 @@ if __name__ == '__main__':
     model = load_model(args.model)
 
     app = socketio.Middleware(sio, app)
-    eventlet.wsgi.server(eventlet.listen(('127.0.0.1', 4567)), app)
+    eventlet.wsgi.server(eventlet.listen(('127.0.0.1', 4567)), app) 

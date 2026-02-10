@@ -7,7 +7,7 @@ def create_model(inputShape):
         layers.Rescaling(1.0 / 255.0, input_shape=inputShape+(3,)),
         layers.Conv2D(24, (5,5), strides=2, padding='same', kernel_initializer='he_normal', activation='relu'),
         layers.BatchNormalization(),
-        layers.Dropout(0.1),
+        layers.Dropout(0.1), 
         layers.Conv2D(36, (5,5), strides=2, padding='same', kernel_initializer='he_normal', activation='relu'),
         layers.BatchNormalization(),
         layers.Conv2D(48, (5,5), strides=2, padding='same', kernel_initializer='he_normal', activation='relu'),
