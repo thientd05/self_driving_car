@@ -5,7 +5,7 @@
 
 Normalization formula:
 $$
-\hat{x} = \frac{x - \mu}{\sigma}
+\hat{x} = \frac{x - \mu}{\sigma} 
 $$
 - \( \mu \): Mean of the batch outputs.
 - \( \sigma \): Standard deviation of the batch outputs.
