@@ -8,7 +8,7 @@ Udacity-style self-driving car simulator via Socket.IO.
 or
 - Demo link: https://youtube.com/shorts/abeWI6rHyNw?feature=share
 
-## Project Structure
+## Project Structure 
 
 - `src/main/model.py` – CNN architecture that maps images to steering & throttle.
 - `src/main/utils.py` – `keras.utils.Sequence` for loading, balancing, and augmenting driving logs.
